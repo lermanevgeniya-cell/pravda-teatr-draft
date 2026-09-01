@@ -62,7 +62,7 @@ export default function Home() {
           <div className="posterLabel">Ноябрьский набор</div>
         </div>
         <div className="heroCopy">
-          <p className="eyebrow">Правда Театра / Москва</p>
+          <p className="eyebrow">Правда Театр / Москва</p>
           <h1>Взрослые и дети играют всерьез</h1>
           <p className="lead">
             Камерная театральная студия для взрослых и детей: маленькая группа,
