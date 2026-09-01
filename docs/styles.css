@@ -40,9 +40,9 @@ main {
 }
 
 .hero {
-  min-height: 92vh;
+  min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(300px, 0.88fr) minmax(420px, 1.12fr);
   border-bottom: 4px solid var(--ink);
   background: var(--ink);
 }
@@ -114,12 +114,13 @@ p {
 }
 
 h1 {
-  max-width: 850px;
+  max-width: 980px;
   margin-bottom: 24px;
-  font-size: clamp(62px, 9vw, 150px);
-  line-height: 0.84;
+  font-size: clamp(48px, 7.2vw, 112px);
+  line-height: 0.88;
   text-transform: uppercase;
   font-weight: 950;
+  overflow-wrap: break-word;
 }
 
 .lead {
@@ -599,7 +600,7 @@ h1 {
   }
 
   .poster {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     border-right: 0;
     border-bottom: 4px solid var(--ink);
   }
@@ -676,7 +677,8 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(54px, 17vw, 82px);
+    font-size: clamp(42px, 12.6vw, 58px);
+    line-height: 0.92;
   }
 
   .lead {
