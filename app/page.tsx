@@ -51,6 +51,8 @@ const formats = [
   ["Кинокурс", "Работа перед камерой, видеовизитка, актерский фрагмент и понимание, как существовать в кадре без зажима."],
 ];
 
+const performanceSlots = ["Премьера", "Репетиция", "Закулисье", "Поклон", "Сцена", "Крупный план"];
+
 export default function Home() {
   return (
     <main>
@@ -61,9 +63,9 @@ export default function Home() {
         </div>
         <div className="heroCopy">
           <p className="eyebrow">Правда Театра / Москва</p>
-          <h1>Взрослые играют всерьез</h1>
+          <h1>Взрослые и дети играют всерьез</h1>
           <p className="lead">
-            Камерная театральная студия для взрослых: маленькая группа,
+            Камерная театральная студия для взрослых и детей: маленькая группа,
             педагоги из сильных московских театров и роль на сцене в финале курса.
           </p>
           <div className="heroActions" aria-label="Основные действия">
@@ -160,6 +162,21 @@ export default function Home() {
               </div>
               <h3>{teacher.name}</h3>
               <p>{teacher.role}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section performances">
+        <div className="sectionTop">
+          <p className="kicker">Спектакли</p>
+          <h2>Здесь будут кадры со сцены: работа, свет, лица и финальный поклон.</h2>
+        </div>
+        <div className="performanceGrid">
+          {performanceSlots.map((slot, index) => (
+            <article key={slot}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{slot}</p>
             </article>
           ))}
         </div>

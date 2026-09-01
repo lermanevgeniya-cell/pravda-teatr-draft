@@ -466,6 +466,77 @@ h1 {
   margin-bottom: 24px;
 }
 
+.performances {
+  background: var(--paper);
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr 0.9fr;
+  grid-auto-rows: minmax(230px, 28vw);
+  border: 4px solid var(--ink);
+}
+
+.performanceGrid article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  border-right: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  background:
+    linear-gradient(135deg, rgba(255, 249, 236, 0.82), rgba(255, 249, 236, 0.42)),
+    repeating-linear-gradient(-12deg, rgba(9, 8, 6, 0.12) 0 2px, transparent 2px 22px),
+    var(--cyan);
+  overflow: hidden;
+}
+
+.performanceGrid article:nth-child(1) {
+  grid-row: span 2;
+  background:
+    linear-gradient(135deg, rgba(9, 8, 6, 0.14), transparent),
+    var(--red);
+  color: var(--white);
+}
+
+.performanceGrid article:nth-child(3),
+.performanceGrid article:nth-child(6) {
+  border-right: 0;
+}
+
+.performanceGrid article:nth-child(n + 4) {
+  border-bottom: 0;
+}
+
+.performanceGrid article::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 3px dashed currentColor;
+  opacity: 0.5;
+}
+
+.performanceGrid span,
+.performanceGrid p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.performanceGrid span {
+  font-size: 52px;
+  line-height: 1;
+}
+
+.performanceGrid p {
+  max-width: 240px;
+  font-size: clamp(24px, 3vw, 52px);
+  line-height: 0.92;
+}
+
 .manifest {
   padding: clamp(48px, 7vw, 96px) clamp(20px, 4vw, 64px);
   background: var(--red);
@@ -540,7 +611,8 @@ h1 {
   .advantageGrid,
   .pathGrid,
   .formatGrid,
-  .teacherGrid {
+  .teacherGrid,
+  .performanceGrid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -573,6 +645,27 @@ h1 {
   .advantage:nth-last-child(-n + 2),
   .pathGrid article:nth-last-child(-n + 2),
   .teacherGrid article:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .performanceGrid {
+    grid-auto-rows: minmax(220px, 44vw);
+  }
+
+  .performanceGrid article:nth-child(1) {
+    grid-row: span 1;
+  }
+
+  .performanceGrid article:nth-child(n) {
+    border-right: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+  }
+
+  .performanceGrid article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .performanceGrid article:nth-last-child(-n + 2) {
     border-bottom: 0;
   }
 }
@@ -608,7 +701,8 @@ h1 {
   .advantageGrid,
   .pathGrid,
   .formatGrid,
-  .teacherGrid {
+  .teacherGrid,
+  .performanceGrid {
     grid-template-columns: 1fr;
   }
 
@@ -629,7 +723,14 @@ h1 {
   .advantage:last-child,
   .pathGrid article:last-child,
   .formatGrid article:last-child,
-  .teacherGrid article:last-child {
+  .teacherGrid article:last-child,
+  .performanceGrid article:last-child {
     border-bottom: 0;
+  }
+
+  .performanceGrid article:nth-child(n) {
+    min-height: 220px;
+    border-right: 0;
+    border-bottom: 4px solid var(--ink);
   }
 }
