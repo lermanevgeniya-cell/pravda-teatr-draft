@@ -13,10 +13,36 @@ const path = [
 ];
 
 const teachers = [
-  ["Юрий Коновалов", "актер МХАТ им. Горького, режиссер, сценарист, педагог"],
-  ["Максим Бойцов", "актер МХАТ им. Горького, педагог"],
-  ["Семен Шевелин", "актер МХАТ им. Горького, педагог"],
-  ["Диана Прокопив", "актриса театра им. Ермоловой, педагог по вокалу"],
+  {
+    name: "Юрий Коновалов",
+    role: "актер МХАТ им. Горького, режиссер, сценарист, педагог",
+    image: "/teachers/yuri-konovalov/portrait.jpg",
+  },
+  {
+    name: "Максим Бойцов",
+    role: "актер МХАТ им. Горького, педагог",
+    image: "/teachers/maxim-boytsov/portrait.jpg",
+  },
+  {
+    name: "Семен Шевелин",
+    role: "актер МХАТ им. Горького, педагог",
+    image: "/teachers/semen-shevelin/portrait.jpg",
+  },
+  {
+    name: "Диана Прокопив",
+    role: "актриса театра им. Ермоловой, педагог по вокалу",
+    image: "/teachers/diana-prokopiv/portrait.jpg",
+  },
+  {
+    name: "Николай Коротаев",
+    role: "педагог",
+    image: null,
+  },
+  {
+    name: "Эля Коротаева",
+    role: "педагог",
+    image: null,
+  },
 ];
 
 const formats = [
@@ -123,10 +149,17 @@ export default function Home() {
           <h2>Педагоги, которые работают с живой сценой.</h2>
         </div>
         <div className="teacherGrid">
-          {teachers.map(([name, role]) => (
-            <article key={name}>
-              <h3>{name}</h3>
-              <p>{role}</p>
+          {teachers.map((teacher, index) => (
+            <article key={teacher.name} className={teacher.image ? "" : "teacherPlaceholder"}>
+              <div className="teacherPhoto">
+                {teacher.image ? (
+                  <img src={teacher.image} alt={teacher.name} />
+                ) : (
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                )}
+              </div>
+              <h3>{teacher.name}</h3>
+              <p>{teacher.role}</p>
             </article>
           ))}
         </div>
