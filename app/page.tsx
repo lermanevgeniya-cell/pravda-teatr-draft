@@ -56,14 +56,23 @@ const performanceSlots = ["Премьера", "Репетиция", "Закул�
 export default function Home() {
   return (
     <main>
+      <nav className="topNav" aria-label="Основная навигация">
+        <a href="#top" className="brandMark">Правда Театр</a>
+        <div>
+          <a href="#why">Отличие</a>
+          <a href="#formats">Форматы</a>
+          <a href="#teachers">Педагоги</a>
+          <a href="#request">Заявка</a>
+        </div>
+      </nav>
+
       <section className="hero" id="top">
         <div className="poster">
           <img src="/hero-theatre.png" alt="Афишный коллаж: репетиция и сцена" />
-          <div className="posterLabel">Ноябрьский набор</div>
         </div>
         <div className="heroCopy">
-          <p className="eyebrow">Правда Театр / Москва</p>
-          <h1>Взрослые и дети играют всерьез</h1>
+          <div className="heroNotice">Ноябрьский набор / Москва</div>
+          <h1><span>Взрослые и дети</span><span>играют всерьез</span></h1>
           <p className="lead">
             Камерная театральная студия для взрослых и детей: маленькая группа,
             педагоги из сильных московских театров и роль на сцене в финале курса.
@@ -81,9 +90,17 @@ export default function Home() {
         <a href="#request">Оставить заявку</a>
       </section>
 
+      <section className="rhythmStrip" aria-label="Темы курса">
+        <span>сцена</span>
+        <span>камера</span>
+        <span>голос</span>
+        <span>текст</span>
+        <span>партнер</span>
+        <span>премьера</span>
+      </section>
+
       <section className="section intro" id="why">
         <div>
-          <p className="kicker">Не кружок. Не терапия. Не обещание “раскрыться”.</p>
           <h2>Мы продаем не расписание занятий, а путь от первой пробы до роли.</h2>
         </div>
         <p>
@@ -104,7 +121,6 @@ export default function Home() {
 
       <section className="section split">
         <div className="headlineBlock">
-          <p className="kicker">Что внутри</p>
           <h2>Сцена, камера, голос, текст, партнер и режиссерская сборка.</h2>
         </div>
         <div className="programList">
@@ -116,7 +132,6 @@ export default function Home() {
 
       <section className="section path" aria-label="Путь студента">
         <div className="sectionTop">
-          <p className="kicker">Как это устроено</p>
           <h2>Четыре шага до сцены</h2>
         </div>
         <div className="pathGrid">
@@ -132,7 +147,6 @@ export default function Home() {
 
       <section className="section formats" id="formats">
         <div className="sectionTop">
-          <p className="kicker">Форматы</p>
           <h2>Можно войти аккуратно. Можно сразу идти в курс.</h2>
         </div>
         <div className="formatGrid">
@@ -145,9 +159,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section teachers">
+      <section className="section teachers" id="teachers">
         <div className="sectionTop">
-          <p className="kicker">Команда</p>
           <h2>Педагоги, которые работают с живой сценой.</h2>
         </div>
         <div className="teacherGrid">
@@ -169,7 +182,6 @@ export default function Home() {
 
       <section className="section performances">
         <div className="sectionTop">
-          <p className="kicker">Спектакли</p>
           <h2>Здесь будут кадры со сцены: работа, свет, лица и финальный поклон.</h2>
         </div>
         <div className="performanceGrid">
@@ -189,7 +201,6 @@ export default function Home() {
 
       <section className="section request" id="request">
         <div>
-          <p className="kicker">Ноябрьская группа</p>
           <h2>Напишите “хочу на сцену” - расскажем про курс и встречу-знакомство.</h2>
         </div>
         <div className="contactPanel">
@@ -198,6 +209,34 @@ export default function Home() {
           <a href="https://t.me/pravdateatr" target="_blank" rel="noreferrer">Telegram</a>
         </div>
       </section>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (() => {
+              const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              if (reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+              window.gsap.registerPlugin(window.ScrollTrigger);
+              window.gsap.utils.toArray(".section, .manifest, .teacherGrid article, .performanceGrid article").forEach((element, index) => {
+                window.gsap.from(element, {
+                  autoAlpha: 0,
+                  y: 28,
+                  duration: 0.62,
+                  delay: (index % 4) * 0.035,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: element,
+                    start: "top 88%",
+                    once: true
+                  }
+                });
+              });
+            })();
+          `,
+        }}
+      />
     </main>
   );
 }

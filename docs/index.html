@@ -12,14 +12,23 @@
   </head>
   <body>
     <main>
+      <nav class="topNav" aria-label="Основная навигация">
+        <a href="#top" class="brandMark">Правда Театр</a>
+        <div>
+          <a href="#why">Отличие</a>
+          <a href="#formats">Форматы</a>
+          <a href="#teachers">Педагоги</a>
+          <a href="#request">Заявка</a>
+        </div>
+      </nav>
+
       <section class="hero" id="top">
         <div class="poster">
           <img src="./assets/hero-theatre.png" alt="Афишный коллаж: репетиция и сцена" />
-          <div class="posterLabel">Ноябрьский набор</div>
         </div>
         <div class="heroCopy">
-          <p class="eyebrow">Правда Театр / Москва</p>
-          <h1>Взрослые и дети играют всерьез</h1>
+          <div class="heroNotice">Ноябрьский набор / Москва</div>
+          <h1><span>Взрослые и дети</span><span>играют всерьез</span></h1>
           <p class="lead">
             Камерная театральная студия для взрослых и детей: маленькая группа,
             педагоги из сильных московских театров и роль на сцене в финале курса.
@@ -37,9 +46,17 @@
         <a href="#request">Оставить заявку</a>
       </section>
 
+      <section class="rhythmStrip" aria-label="Темы курса">
+        <span>сцена</span>
+        <span>камера</span>
+        <span>голос</span>
+        <span>текст</span>
+        <span>партнер</span>
+        <span>премьера</span>
+      </section>
+
       <section class="section intro" id="why">
         <div>
-          <p class="kicker">Не кружок. Не терапия. Не обещание “раскрыться”.</p>
           <h2>Мы продаем не расписание занятий, а путь от первой пробы до роли.</h2>
         </div>
         <p>
@@ -58,7 +75,6 @@
 
       <section class="section split">
         <div class="headlineBlock">
-          <p class="kicker">Что внутри</p>
           <h2>Сцена, камера, голос, текст, партнер и режиссерская сборка.</h2>
         </div>
         <div class="programList">
@@ -70,7 +86,6 @@
 
       <section class="section path" aria-label="Путь студента">
         <div class="sectionTop">
-          <p class="kicker">Как это устроено</p>
           <h2>Четыре шага до сцены</h2>
         </div>
         <div class="pathGrid">
@@ -83,7 +98,6 @@
 
       <section class="section formats" id="formats">
         <div class="sectionTop">
-          <p class="kicker">Форматы</p>
           <h2>Можно войти аккуратно. Можно сразу идти в курс.</h2>
         </div>
         <div class="formatGrid">
@@ -93,9 +107,8 @@
         </div>
       </section>
 
-      <section class="section teachers">
+      <section class="section teachers" id="teachers">
         <div class="sectionTop">
-          <p class="kicker">Команда</p>
           <h2>Педагоги, которые работают с живой сценой.</h2>
         </div>
         <div class="teacherGrid">
@@ -110,7 +123,6 @@
 
       <section class="section performances">
         <div class="sectionTop">
-          <p class="kicker">Спектакли</p>
           <h2>Здесь будут кадры со сцены: работа, свет, лица и финальный поклон.</h2>
         </div>
         <div class="performanceGrid">
@@ -130,7 +142,6 @@
 
       <section class="section request" id="request">
         <div>
-          <p class="kicker">Ноябрьская группа</p>
           <h2>Напишите “хочу на сцену” - расскажем про курс и встречу-знакомство.</h2>
         </div>
         <div class="contactPanel">
@@ -139,6 +150,30 @@
           <a href="https://t.me/pravdateatr" target="_blank" rel="noreferrer">Telegram</a>
         </div>
       </section>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <script>
+        (() => {
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+          window.gsap.registerPlugin(window.ScrollTrigger);
+          window.gsap.utils.toArray(".section, .manifest, .teacherGrid article, .performanceGrid article").forEach((element, index) => {
+            window.gsap.from(element, {
+              autoAlpha: 0,
+              y: 28,
+              duration: 0.62,
+              delay: (index % 4) * 0.035,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: element,
+                start: "top 88%",
+                once: true
+              }
+            });
+          });
+        })();
+      </script>
     </main>
   </body>
 </html>
