@@ -33,10 +33,15 @@ test("server-renders the Pravda Teatr draft", async () => {
   assert.match(html, /Правда Театр/);
   assert.match(html, /Ноябрьский набор/);
   assert.match(html, /<span>Взрослые и дети<\/span><span>играют всерьез<\/span>/);
-  assert.match(html, /Педагоги, которые работают с живой сценой/);
+  assert.match(html, /От первого занятия - к роли на сцене перед зрителями/);
+  assert.match(html, /Педагоги из театров, где сцена - их ежедневная работа/);
   assert.match(html, /Николай Коротаев/);
-  assert.match(html, /Эля Коротаева/);
+  assert.match(html, /Эльвира Цимбал/);
+  assert.match(html, /Стоимость ноябрьского набора/);
+  assert.match(html, /120 000 ₽/);
+  assert.match(html, /Калашный пер\., дом 3/);
   assert.doesNotMatch(html, /Правда Театра/);
+  assert.doesNotMatch(html, /Проба/);
 });
 
 test("keeps the GitHub Pages draft in sync", async () => {
@@ -48,8 +53,13 @@ test("keeps the GitHub Pages draft in sync", async () => {
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css"/);
   assert.match(html, /<span>Взрослые и дети<\/span><span>играют всерьез<\/span>/);
   assert.match(html, /src="\.\/assets\/teachers\/yuri-konovalov\/portrait\.jpg"/);
+  assert.match(html, /src="\.\/assets\/teachers\/nikolai-korotaev\/portrait\.jpg"/);
+  assert.match(html, /src="\.\/assets\/teachers\/elvira-tsimbal\/portrait\.jpg"/);
+  assert.match(html, /src="\.\/assets\/performances\/master-i-margarita\/169\.jpg"/);
+  assert.match(html, /Спектакли, которые уже ставил Правда Театр/);
+  assert.match(html, /«Мастер и Маргарита»/);
   assert.match(html, /https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/gsap\/3\.12\.5\/gsap\.min\.js/);
   assert.match(css, /font-family: "Oswald"/);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.doesNotMatch(html + css, /Правда Театра|posterLabel|class="kicker"|class="eyebrow"/);
+  assert.doesNotMatch(html + css, /Правда Театра|posterLabel|class="kicker"|class="eyebrow"|Эля Коротаева/);
 });

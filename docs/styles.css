@@ -77,6 +77,7 @@ main {
   line-height: 1;
   font-weight: 900;
   text-transform: uppercase;
+  white-space: nowrap;
   transition:
     background-color 180ms ease-out,
     color 180ms ease-out,
@@ -310,7 +311,8 @@ h1 span {
 .headlineBlock h2,
 .sectionTop h2,
 .manifest h2,
-.request h2 {
+.request h2,
+.wednesdayCard h2 {
   font-family: "Oswald", Impact, sans-serif;
   font-size: clamp(38px, 5vw, 84px);
   line-height: 0.96;
@@ -323,7 +325,10 @@ h1 span {
 .formatGrid p,
 .teacherGrid p,
 .pathGrid p,
-.advantage p {
+.advantage p,
+.wednesdayCard p,
+.priceGrid span,
+.stagingGrid p {
   font-size: clamp(18px, 1.65vw, 26px);
   line-height: 1.18;
 }
@@ -481,6 +486,72 @@ h1 span {
   background: var(--white);
 }
 
+.wednesdays {
+  background: var(--paper);
+  padding-top: 0;
+}
+
+.wednesdayCard {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 0;
+  border: 4px solid var(--ink);
+  background: var(--white);
+  transition:
+    transform 220ms var(--ease),
+    box-shadow 220ms var(--ease);
+}
+
+.wednesdayCard > div {
+  padding: clamp(24px, 4vw, 54px);
+}
+
+.wednesdayCard > div:first-child {
+  background: var(--yellow);
+  border-inline-end: 4px solid var(--ink);
+}
+
+.wednesdayCard h2,
+.wednesdayCard p {
+  margin-bottom: 0;
+}
+
+.wednesdayCard h2 {
+  margin-bottom: 20px;
+}
+
+.scheduleDraft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 290px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.scheduleDraft span,
+.scheduleDraft strong {
+  display: block;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.scheduleDraft span {
+  max-width: 520px;
+  font-size: clamp(22px, 2.8vw, 46px);
+  line-height: 0.98;
+}
+
+.scheduleDraft strong {
+  align-self: flex-start;
+  margin-block: 28px;
+  border: 4px solid var(--white);
+  background: var(--red);
+  padding: 12px 16px;
+  font-size: clamp(18px, 1.7vw, 28px);
+  line-height: 1;
+}
+
 .teachers {
   background: var(--white);
 }
@@ -592,25 +663,68 @@ h1 span {
   background: var(--paper);
 }
 
+.stagingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 4px solid var(--ink);
+  margin-bottom: clamp(44px, 6vw, 84px);
+}
+
+.stagingGrid article {
+  min-height: 260px;
+  padding: 24px;
+  border-inline-end: 4px solid var(--ink);
+  background: var(--white);
+}
+
+.stagingGrid article:nth-child(1) {
+  background: var(--red);
+  color: var(--white);
+}
+
+.stagingGrid article:nth-child(2) {
+  background: var(--yellow);
+}
+
+.stagingGrid article:last-child {
+  border-inline-end: 0;
+  background: var(--cyan);
+}
+
+.stagingGrid span {
+  display: block;
+  margin-bottom: 40px;
+  font-family: "Oswald", Impact, sans-serif;
+  font-size: 58px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.stagingGrid h3 {
+  margin-bottom: 14px;
+  font-family: "Oswald", Impact, sans-serif;
+  font-size: clamp(30px, 3vw, 56px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.performanceIntro {
+  max-width: 1160px;
+}
+
 .performanceGrid {
   display: grid;
-  grid-template-columns: 1.25fr 0.85fr 0.9fr;
-  grid-auto-rows: minmax(230px, 28vw);
+  grid-template-columns: 1.15fr 0.85fr 1fr;
+  grid-auto-rows: minmax(240px, 26vw);
   border: 4px solid var(--ink);
 }
 
 .performanceGrid article {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 22px;
   border-inline-end: 4px solid var(--ink);
   border-bottom: 4px solid var(--ink);
-  background:
-    linear-gradient(135deg, rgba(255, 249, 236, 0.82), rgba(255, 249, 236, 0.42)),
-    repeating-linear-gradient(-12deg, rgba(9, 8, 6, 0.12) 0 2px, transparent 2px 22px),
-    var(--cyan);
+  background: var(--ink);
   overflow: hidden;
   transition:
     transform 220ms var(--ease),
@@ -619,49 +733,103 @@ h1 span {
 
 .performanceGrid article:nth-child(1) {
   grid-row: span 2;
-  background:
-    linear-gradient(135deg, rgba(9, 8, 6, 0.14), transparent),
-    var(--red);
-  color: var(--white);
+  grid-column: span 2;
 }
 
 .performanceGrid article:nth-child(3),
-.performanceGrid article:nth-child(6) {
+.performanceGrid article:nth-child(6),
+.performanceGrid article:nth-child(9) {
   border-inline-end: 0;
 }
 
-.performanceGrid article:nth-child(n + 4) {
+.performanceGrid article:nth-child(n + 7) {
   border-bottom: 0;
 }
 
 .performanceGrid article::after {
   content: "";
   position: absolute;
-  inset: 18px;
-  border: 3px dashed currentColor;
-  opacity: 0.5;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 8, 6, 0.08), rgba(9, 8, 6, 0.42));
+  pointer-events: none;
 }
 
-.performanceGrid span,
-.performanceGrid p {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-weight: 900;
-  text-transform: uppercase;
+.performanceGrid img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition:
+    transform 360ms var(--ease),
+    filter 260ms ease-out;
 }
 
 .performanceGrid span {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  z-index: 1;
+  margin: 0;
   font-family: "Oswald", Impact, sans-serif;
-  font-size: 52px;
+  font-size: clamp(34px, 3vw, 58px);
   line-height: 1;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
-.performanceGrid p {
-  max-width: 240px;
+.price {
+  background: var(--white);
+}
+
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 4px solid var(--ink);
+}
+
+.priceGrid article {
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  border-inline-end: 4px solid var(--ink);
+  background: var(--yellow);
+}
+
+.priceGrid article:nth-child(2) {
+  background: var(--cyan);
+}
+
+.priceGrid article:last-child {
+  border-inline-end: 0;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.priceGrid h3,
+.priceGrid p {
   font-family: "Oswald", Impact, sans-serif;
-  font-size: clamp(24px, 3vw, 52px);
-  line-height: 0.92;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.priceGrid h3 {
+  margin-bottom: 36px;
+  font-size: clamp(28px, 2.8vw, 54px);
+  font-weight: 700;
+}
+
+.priceGrid p {
+  margin-bottom: 14px;
+  font-size: clamp(48px, 7vw, 118px);
+  font-weight: 700;
+}
+
+.priceGrid span {
+  font-weight: 900;
 }
 
 .manifest {
@@ -696,21 +864,33 @@ h1 span {
   border: 4px solid var(--white);
 }
 
-.contactPanel a {
+.contactPanel a,
+.contactPanel span {
   padding: 22px;
   border-bottom: 4px solid var(--white);
   font-size: clamp(20px, 2vw, 32px);
   line-height: 1;
   font-weight: 950;
   overflow-wrap: anywhere;
+}
+
+.contactPanel a {
   transition:
     background-color 180ms ease-out,
     color 180ms ease-out,
     padding-left 180ms var(--ease);
 }
 
-.contactPanel a:last-child {
+.contactPanel span {
+  margin: 0;
+  background: var(--red);
+}
+
+.contactPanel > :last-child {
   border-bottom: 0;
+}
+
+.contactPanel a:nth-of-type(3) {
   background: var(--yellow);
   color: var(--ink);
 }
@@ -731,13 +911,20 @@ h1 span {
   .advantage:hover,
   .pathGrid article:hover,
   .formatGrid article:hover,
-  .performanceGrid article:hover {
+  .performanceGrid article:hover,
+  .priceGrid article:hover,
+  .wednesdayCard:hover {
     filter: saturate(1.18) contrast(1.03);
   }
 
   .teacherGrid article:hover .teacherPhoto img {
     transform: scale(1.045);
     filter: grayscale(0.22) contrast(1.08);
+  }
+
+  .performanceGrid article:hover img {
+    transform: scale(1.045);
+    filter: saturate(1.12) contrast(1.05);
   }
 
   .contactPanel a:hover {
@@ -753,8 +940,8 @@ h1,
 .heroActions,
 .announcement,
 .rhythmStrip span,
-.section > *,
-.manifest > * {
+  .section > *,
+  .manifest > * {
   animation: enter 520ms var(--ease) both;
 }
 
@@ -782,7 +969,8 @@ h1,
   .intro,
   .split,
   .request,
-  .announcement {
+  .announcement,
+  .wednesdayCard {
     grid-template-columns: 1fr;
   }
 
@@ -805,8 +993,15 @@ h1,
   .pathGrid,
   .formatGrid,
   .teacherGrid,
-  .performanceGrid {
+  .performanceGrid,
+  .stagingGrid,
+  .priceGrid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .wednesdayCard > div:first-child {
+    border-inline-end: 0;
+    border-bottom: 4px solid var(--ink);
   }
 
   .rhythmStrip {
@@ -824,14 +1019,18 @@ h1,
   .advantage,
   .pathGrid article,
   .formatGrid article,
-  .teacherGrid article {
+  .teacherGrid article,
+  .stagingGrid article,
+  .priceGrid article {
     border-inline-end: 4px solid var(--ink);
     border-bottom: 4px solid var(--ink);
   }
 
   .advantage:nth-child(2n),
   .pathGrid article:nth-child(2n),
-  .formatGrid article:nth-child(2n) {
+  .formatGrid article:nth-child(2n),
+  .stagingGrid article:nth-child(2n),
+  .priceGrid article:nth-child(2n) {
     border-inline-end: 0;
   }
 
@@ -859,6 +1058,7 @@ h1,
 
   .performanceGrid article:nth-child(1) {
     grid-row: span 1;
+    grid-column: span 2;
   }
 
   .performanceGrid article:nth-child(n) {
@@ -871,6 +1071,13 @@ h1,
   }
 
   .performanceGrid article:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .stagingGrid article:last-child,
+  .priceGrid article:last-child {
+    grid-column: span 2;
+    border-inline-end: 0;
     border-bottom: 0;
   }
 }
@@ -886,7 +1093,7 @@ h1,
   .topNav div {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .topNav a {
@@ -933,7 +1140,9 @@ h1,
   .pathGrid,
   .formatGrid,
   .teacherGrid,
-  .performanceGrid {
+  .performanceGrid,
+  .stagingGrid,
+  .priceGrid {
     grid-template-columns: 1fr;
   }
 
@@ -959,7 +1168,9 @@ h1,
   .advantage,
   .pathGrid article,
   .formatGrid article,
-  .teacherGrid article {
+  .teacherGrid article,
+  .stagingGrid article,
+  .priceGrid article {
     min-height: 220px;
     border-inline-end: 0;
     border-bottom: 4px solid var(--ink);
@@ -974,14 +1185,22 @@ h1,
   .pathGrid article:last-child,
   .formatGrid article:last-child,
   .teacherGrid article:last-child,
-  .performanceGrid article:last-child {
+  .performanceGrid article:last-child,
+  .stagingGrid article:last-child,
+  .priceGrid article:last-child {
     border-bottom: 0;
   }
 
   .performanceGrid article:nth-child(n) {
     min-height: 220px;
+    grid-column: span 1;
     border-inline-end: 0;
     border-bottom: 4px solid var(--ink);
+  }
+
+  .stagingGrid article:last-child,
+  .priceGrid article:last-child {
+    grid-column: span 1;
   }
 }
 
