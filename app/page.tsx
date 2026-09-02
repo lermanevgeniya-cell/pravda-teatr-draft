@@ -219,17 +219,19 @@ export default function Home() {
         <div className="sectionTop">
           <h2>Спектакли, которые уже ставил Правда Театр.</h2>
         </div>
-        <div className="stagingGrid">
+        <div className="stagingList">
           {performances.map(([title, text], index) => (
             <article key={title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>«{title}»</h3>
-              <p>{text}</p>
+              <div>
+                <h3>«{title}»</h3>
+                <p>{text}</p>
+              </div>
             </article>
           ))}
         </div>
         <div className="sectionTop performanceIntro">
-          <h2>Кадры со сцены: работа, свет, лица и финальный поклон.</h2>
+          <h2>Сцены из наших спектаклей.</h2>
         </div>
         <div className="performanceGrid">
           {performancePhotos.map(([id, alt], index) => (
@@ -243,17 +245,17 @@ export default function Home() {
 
       <section className="section price" id="price">
         <div className="sectionTop">
-          <h2>Стоимость ноябрьского набора</h2>
+          <h2>Цены и условия</h2>
         </div>
         <div className="priceGrid">
           <article>
             <h3>Взрослый курс</h3>
-            <p>120 000 ₽</p>
+            <p><span className="priceAmount">120 000 ₽</span></p>
             <span>за 6 месяцев обучения</span>
           </article>
           <article>
             <h3>Детский курс</h3>
-            <p>110 000 ₽</p>
+            <p><span className="priceAmount">110 000 ₽</span></p>
             <span>за 6 месяцев обучения</span>
           </article>
           <article>

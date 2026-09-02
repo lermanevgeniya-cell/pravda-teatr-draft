@@ -329,7 +329,7 @@ h1 span {
 .advantage p,
 .wednesdayCard p,
 .priceGrid span,
-.stagingGrid p {
+.stagingList p {
   font-size: clamp(18px, 1.65vw, 26px);
   line-height: 1.18;
 }
@@ -394,10 +394,15 @@ h1 span {
 }
 
 .programList p {
+  min-height: clamp(190px, 18vw, 280px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 22px;
   border: 3px solid var(--white);
   background: rgba(255, 249, 236, 0.05);
+  text-align: center;
   transition:
     background-color 180ms ease-out,
     transform 180ms var(--ease);
@@ -586,23 +591,11 @@ h1 span {
   color: var(--white);
 }
 
-.teacherGrid article:nth-child(5) {
-  background: var(--cyan);
-  color: var(--ink);
-}
-
-.teacherGrid article:nth-child(6) {
-  background: var(--yellow);
-  color: var(--ink);
-}
-
 .teacherPhoto {
   width: 100%;
   aspect-ratio: 4 / 3;
   border-bottom: 4px solid var(--ink);
-  background:
-    linear-gradient(135deg, rgba(255, 249, 236, 0.15), transparent 42%),
-    var(--red);
+  background: var(--ink);
   overflow: hidden;
 }
 
@@ -618,7 +611,12 @@ h1 span {
 }
 
 .teacherGrid article:nth-child(2n) .teacherPhoto img {
-  filter: grayscale(1) contrast(1.2) sepia(0.1);
+  filter: grayscale(1) contrast(1.16);
+}
+
+.teacherGrid article:nth-child(5) .teacherPhoto img {
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .teacherPlaceholder .teacherPhoto {
@@ -654,6 +652,8 @@ h1 span {
 
 .teacherGrid h3 {
   margin-top: 24px;
+  font-size: clamp(30px, 2.25vw, 40px);
+  overflow-wrap: anywhere;
 }
 
 .teacherGrid p {
@@ -664,50 +664,44 @@ h1 span {
   background: var(--paper);
 }
 
-.stagingGrid {
+.stagingList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 4px solid var(--ink);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
   margin-bottom: clamp(44px, 6vw, 84px);
 }
 
-.stagingGrid article {
-  min-height: 260px;
-  padding: 24px;
-  border-inline-end: 4px solid var(--ink);
-  background: var(--white);
+.stagingList article {
+  display: grid;
+  grid-template-columns: minmax(64px, 0.14fr) 1fr;
+  gap: clamp(18px, 4vw, 64px);
+  align-items: baseline;
+  padding: clamp(18px, 3vw, 34px) 0;
+  border-bottom: 4px solid var(--ink);
 }
 
-.stagingGrid article:nth-child(1) {
-  background: var(--red);
-  color: var(--white);
+.stagingList article:last-child {
+  border-bottom: 0;
 }
 
-.stagingGrid article:nth-child(2) {
-  background: var(--yellow);
-}
-
-.stagingGrid article:last-child {
-  border-inline-end: 0;
-  background: var(--cyan);
-}
-
-.stagingGrid span {
-  display: block;
-  margin-bottom: 40px;
+.stagingList span {
   font-family: "Oswald", Impact, sans-serif;
-  font-size: 58px;
+  font-size: clamp(36px, 4vw, 70px);
   line-height: 1;
   font-weight: 700;
 }
 
-.stagingGrid h3 {
-  margin-bottom: 14px;
+.stagingList h3 {
+  margin-bottom: 8px;
   font-family: "Oswald", Impact, sans-serif;
-  font-size: clamp(30px, 3vw, 56px);
+  font-size: clamp(34px, 5.2vw, 92px);
   line-height: 0.95;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.stagingList p {
+  margin-bottom: 0;
 }
 
 .performanceIntro {
@@ -825,8 +819,12 @@ h1 span {
 
 .priceGrid p {
   margin-bottom: 14px;
-  font-size: clamp(48px, 7vw, 118px);
+  font-size: clamp(44px, 6.4vw, 104px);
   font-weight: 700;
+}
+
+.priceAmount {
+  white-space: nowrap;
 }
 
 .priceGrid span {
@@ -920,7 +918,7 @@ h1 span {
 
   .teacherGrid article:hover .teacherPhoto img {
     transform: scale(1.045);
-    filter: grayscale(0.22) contrast(1.08);
+    filter: grayscale(1) contrast(1.24);
   }
 
   .performanceGrid article:hover img {
@@ -995,7 +993,6 @@ h1,
   .formatGrid,
   .teacherGrid,
   .performanceGrid,
-  .stagingGrid,
   .priceGrid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1021,7 +1018,6 @@ h1,
   .pathGrid article,
   .formatGrid article,
   .teacherGrid article,
-  .stagingGrid article,
   .priceGrid article {
     border-inline-end: 4px solid var(--ink);
     border-bottom: 4px solid var(--ink);
@@ -1030,7 +1026,6 @@ h1,
   .advantage:nth-child(2n),
   .pathGrid article:nth-child(2n),
   .formatGrid article:nth-child(2n),
-  .stagingGrid article:nth-child(2n),
   .priceGrid article:nth-child(2n) {
     border-inline-end: 0;
   }
@@ -1075,7 +1070,6 @@ h1,
     border-bottom: 0;
   }
 
-  .stagingGrid article:last-child,
   .priceGrid article:last-child {
     grid-column: span 2;
     border-inline-end: 0;
@@ -1142,7 +1136,6 @@ h1,
   .formatGrid,
   .teacherGrid,
   .performanceGrid,
-  .stagingGrid,
   .priceGrid {
     grid-template-columns: 1fr;
   }
@@ -1170,7 +1163,6 @@ h1,
   .pathGrid article,
   .formatGrid article,
   .teacherGrid article,
-  .stagingGrid article,
   .priceGrid article {
     min-height: 220px;
     border-inline-end: 0;
@@ -1187,7 +1179,6 @@ h1,
   .formatGrid article:last-child,
   .teacherGrid article:last-child,
   .performanceGrid article:last-child,
-  .stagingGrid article:last-child,
   .priceGrid article:last-child {
     border-bottom: 0;
   }
@@ -1199,9 +1190,13 @@ h1,
     border-bottom: 4px solid var(--ink);
   }
 
-  .stagingGrid article:last-child,
   .priceGrid article:last-child {
     grid-column: span 1;
+  }
+
+  .stagingList article {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
 
